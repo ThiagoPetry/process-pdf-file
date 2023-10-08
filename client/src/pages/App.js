@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-import { HiOutlineDownload } from "react-icons/hi";
+import { BiSave } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
+import { HiOutlineDownload } from "react-icons/hi";
 
 import { bePost } from "../api/api";
 import { fileSize } from "../utils/fileSize";
@@ -16,7 +17,7 @@ const App = () => {
   const [pdfText, setPdfText] = useState("");
   const [pdfSize, setPdfSize] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
   const sendPdf = async (file) => {
     const formData = new FormData();
 
@@ -43,6 +44,38 @@ const App = () => {
     } else {
       setError("Não foi possível processar o PDF.");
     }
+  };
+
+  const updateFile = async () => {
+    const formData = new FormData();
+
+    setLoading(true);
+
+    if (file) {
+      formData.append("pdf", file, "file.pdf");
+    }
+
+    formData.append("text", pdfText);
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+
+    const { data } = await bePost("/api/files/update_pdf", formData, config);
+
+    setLoading(false);
+
+    const blob = new Blob([
+      new Uint8Array(data.response.data).buffer
+    ], { type: "application/pdf" });
+
+    const url = URL.createObjectURL(blob);
+    blob.url = url;
+
+    downloadFile(blob);
   };
 
   const reset = () => {
@@ -79,8 +112,9 @@ const App = () => {
           <div className={"info"}>
             <p><b>File:</b> {file.name}</p>
             <p><b>Size:</b> {pdfSize}</p>
-            <button onClick={downloadFile}><HiOutlineDownload /></button>
             <button onClick={reset}><AiOutlineDelete /></button>
+            <button onClick={downloadFile}><HiOutlineDownload /></button>
+            <button onClick={updateFile}><BiSave /></button>
           </div>
         }
 
