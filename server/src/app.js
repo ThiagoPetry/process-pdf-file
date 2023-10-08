@@ -3,13 +3,13 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 
-const routes = require("./src/routes");
+const routes = require("./routes");
 
 const app = express();
 const limit = "500mb";
 
 const server = app.listen();
-server.setTimeout(1000000);
+server.setTimeout(60 * 1000);
 
 app.use(bodyParser.urlencoded({ limit, extended: true }));
 app.use(bodyParser.json({ limit }));
