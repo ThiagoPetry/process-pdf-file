@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { HiOutlineDownload } from "react-icons/hi";
+import { AiOutlineDelete } from "react-icons/ai";
 
 import { bePost } from "../api/api";
 import { fileSize } from "../utils/fileSize";
@@ -44,6 +45,10 @@ const App = () => {
     }
   };
 
+  const reset = () => {
+    setFile({});
+  };
+
   const onChangeFile = (value) => {
     setFile(value);
   };
@@ -75,6 +80,7 @@ const App = () => {
             <p><b>File:</b> {file.name}</p>
             <p><b>Size:</b> {pdfSize}</p>
             <button onClick={downloadFile}><HiOutlineDownload /></button>
+            <button onClick={reset}><AiOutlineDelete /></button>
           </div>
         }
 
