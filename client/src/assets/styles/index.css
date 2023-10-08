@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: rgb(3, 3, 3);
+}
+
+.size-fix {
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 400px;
+  max-height: 400px;
+}
+
+#iframe-pdf {
+  border: 0px;
+}
+
+#not-found {
+  text-align: center;
+  display: block;
+}
+
+#not-found h1 {
+  margin: 0 0 10px 0;
+}
+
+#not-found a {
+  font-size: 18px;
+  color: rgb(0, 149, 255);
+}
+
+#insert-pdf {
+  width: 80%;
+  margin: 20px 0 0 0;
+  text-align: center;
+}
+
+#file-button {
+  margin: 0 0 40px 0;
+}
+
+#file-button input[type="file"] {
+  display: none;
+}
+
+#file-button label {
+  padding: 10px;
+  background-color: rgb(205, 27, 27);
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+#file-button label:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+#file-button label:active {
+  opacity: 0.8;
+}
+
+.view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#text-pdf {
+  margin: 0 0 0 10px;
+  border: 0;
+  font-size: 16px;
+  padding: 3px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+.info {
+  width: 810px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.info p {
+  font-size: 20px;
+  margin: 0 10px 10px 0;
+}
+
+.info button {
+  padding: 3px;
+  border: 0;
+  border-radius: 3px;
+  margin: 0 10px 5px 0;
+  font-size: 20px;
+  color: #fff;
+  background-color: rgb(56, 56, 56);
+}
