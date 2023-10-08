@@ -6,15 +6,20 @@ import { bePost } from "../api/api";
 import { fileSize } from "../utils/fileSize";
 import { downloadFile } from "../utils/downloadFile";
 
+import Loading from "../components/Loading";
 import FileButton from "../components/FileButton";
 
 const App = () => {
   const [file, setFile] = useState({});
+  const [error, setError] = useState("");
   const [pdfText, setPdfText] = useState("");
   const [pdfSize, setPdfSize] = useState("");
-
+  const [loading, setLoading] = useState(false);
+  
   const sendPdf = async (file) => {
     const formData = new FormData();
+
+    setLoading(true);
 
     if (file) {
       formData.append("pdf", file, "file.pdf");
@@ -29,11 +34,14 @@ const App = () => {
 
     const { data } = await bePost("/api/files/read_pdf", formData, config);
 
+    setLoading(false);
+
     if (data?.success) {
       setPdfText(data.text);
+      setPdfSize(fileSize(file.size));
+    } else {
+      setError("Não foi possível processar o PDF.");
     }
-
-    setPdfSize(fileSize(file.size));
   };
 
   const onChangeFile = (value) => {
@@ -51,6 +59,14 @@ const App = () => {
           sendPdf={sendPdf}
           onChangeFile={onChangeFile}
         />
+      }
+
+      {loading &&
+        <Loading />
+      }
+
+      {error &&
+        <p>{error}</p>
       }
 
       <div className={"pdf"}>
